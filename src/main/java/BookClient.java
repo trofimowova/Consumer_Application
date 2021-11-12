@@ -6,11 +6,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.testng.annotations.Test;
 import reactor.netty.http.client.HttpClient;
 
 import javax.annotation.PostConstruct;
 
-
+    @Test
     @Component
     public class BookClient {
 
@@ -32,14 +33,16 @@ import javax.annotation.PostConstruct;
 
         public JsonNode getAllAvailableBooks() {
 
-            JsonNode availableBooks = webClient.get()
+            JsonNode dataGroups = webClient.get()
                     .uri("/datagroups")
                     .accept(MediaType.APPLICATION_JSON)
                     .retrieve()
                     .bodyToMono(JsonNode.class)
                     .block();
+            return dataGroups;
 
-            return availableBooks;
+
         }
+
     }
 

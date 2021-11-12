@@ -1,7 +1,8 @@
 
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.junit.jupiter.api.Test;
+import org.springframework.cloud.contract.stubrunner.StubFinder;
+import org.testng.annotations.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
@@ -11,18 +12,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @AutoConfigureStubRunner(
-        ids = {"de.rieckpil.blog:book-store-server:+:stubs:8080"},
+        ids = {"com.example:Sbb:+:stubs:8080"},
         stubsMode = StubRunnerProperties.StubsMode.LOCAL
 )
 class BookClientTest {
 
     @Autowired
-    private BookClient cut;
+    private BookClient deus;
+    @Autowired
+    private StubFinder stubFinder;
 
     @Test
     void testContractToBookStoreServer() {
+        stubFinder.trigger("Sbb");
 
-        JsonNode result = cut.getAllAvailableBooks();
+        JsonNode result = deus.getAllAvailableBooks();
 
         assertTrue(result.isArray());
 
