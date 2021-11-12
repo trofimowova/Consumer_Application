@@ -31,7 +31,7 @@ import javax.annotation.PostConstruct;
                     .build();
         }
 
-        public JsonNode getAllAvailableBooks() {
+        public JsonNode getDataGroups() {
 
             JsonNode dataGroups = webClient.get()
                     .uri("/datagroups")
