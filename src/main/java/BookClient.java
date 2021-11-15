@@ -11,7 +11,7 @@ import reactor.netty.http.client.HttpClient;
 
 import javax.annotation.PostConstruct;
 
-    @Test
+
     @Component
     public class BookClient {
 
