@@ -34,10 +34,15 @@ class BookClientTest {
 
         assertTrue(result.isArray());
 
-        JsonNode firstGroup = result.get(0);
+        JsonNode firstGroup = result.get(1);
 
         assertTrue(firstGroup.has("id"));
-        //assertTrue(firstBook.get("id").isNumber());
+        assertTrue(firstGroup.has("beschreibung"));
+        assertTrue(firstGroup.has("adcDump"));
+
+        assertTrue(firstGroup.get("id").isInt());
+        System.out.println(firstGroup);
+
 
     }
 }
