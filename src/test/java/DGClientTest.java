@@ -3,35 +3,33 @@
 import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringJUnitConfig    //   or @ExtendWith(SpringExtension.class)
 
-@ContextConfiguration(classes= BookClientTestConfig.class)
+@ContextConfiguration(classes= DGClientTestConfig.class)
 @SpringBootTest   // Scanning goes up forward  in packages.
 @AutoConfigureStubRunner(
         ids = {"com.example:Sbb:+:stubs:8090"},
         stubsMode = StubRunnerProperties.StubsMode.LOCAL
 )
 
-class BookClientTest {
+class DGClientTest {
 
-    @Autowired private BookClient bookClient;  //Injection of bookclient to our test
+    @Autowired private DGClient DGClient;  //Injection of bookclient to our test
 
     @Test
     void testShouldMatchDAtaGroup() {
        // stubFinder.trigger("Sbb");
 
-        JsonNode result = bookClient.getDataGroups();
+        JsonNode result = DGClient.getDataGroups();
 
         assertTrue(result.isArray());
 

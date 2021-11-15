@@ -12,7 +12,7 @@ import javax.annotation.PostConstruct;
 
 
     @Component
-    public class BookClient {
+    public class DGClient {
 
         private WebClient webClient;
 
