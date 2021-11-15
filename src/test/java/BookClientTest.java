@@ -10,13 +10,14 @@ import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRun
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@SpringJUnitConfig    //   or @ExtendWith(SpringExtension.class)
 
-@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes= BookClientTestConfig.class)
-@SpringBootTest
+@SpringBootTest   // Scanning goes up forward  in packages.
 @AutoConfigureStubRunner(
         ids = {"com.example:Sbb:+:stubs:8090"},
         stubsMode = StubRunnerProperties.StubsMode.LOCAL
@@ -24,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BookClientTest {
 
-    @Autowired private BookClient bookClient;
+    @Autowired private BookClient bookClient;  //Injection of bookclient to our test
 
     @Test
     void testShouldMatchDAtaGroup() {
@@ -39,6 +40,15 @@ class BookClientTest {
         assertTrue(firstGroup.has("id"));
         assertTrue(firstGroup.has("beschreibung"));
         assertTrue(firstGroup.has("adcDump"));
+        assertTrue(firstGroup.has("readyForSmoke"));
+        assertTrue(firstGroup.has("url"));
+        assertTrue(firstGroup.has("erstellungsZeitpunkt"));
+        assertTrue(firstGroup.has("status"));
+        assertTrue(firstGroup.has("postProcessorVersion"));
+        assertTrue(firstGroup.has("exporterVersion"));
+        assertTrue(firstGroup.has("adcTemporal"));
+        assertTrue(firstGroup.has("adcBuildNumber"));
+        assertTrue(firstGroup.has("latestPlandatenId"));
 
         assertTrue(firstGroup.get("id").isInt());
         System.out.println(firstGroup);
