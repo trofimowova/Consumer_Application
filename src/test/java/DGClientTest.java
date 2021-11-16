@@ -15,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import static com.github.jknack.handlebars.helper.ConditionalHelpers.or;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@SpringJUnitConfig    //   or @ExtendWith(SpringExtension.class)
+//@SpringJUnitConfig    //   or @ExtendWith(SpringExtension.class)
 
 @ContextConfiguration(classes= DGClientTestConfig.class)
 @SpringBootTest   // Scanning goes up forward  in packages.
