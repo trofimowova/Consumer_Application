@@ -10,6 +10,9 @@ import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+import java.util.concurrent.ThreadLocalRandom;
+
+import static com.github.jknack.handlebars.helper.ConditionalHelpers.or;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringJUnitConfig    //   or @ExtendWith(SpringExtension.class)
@@ -33,7 +36,7 @@ class DGClientTest {
 
         assertTrue(result.isArray());
 
-        JsonNode firstGroup = result.get(1);
+        JsonNode firstGroup = result.get(ThreadLocalRandom.current().nextInt(0,6));
 
         assertTrue(firstGroup.has("id"));
         assertTrue(firstGroup.has("beschreibung"));
@@ -48,7 +51,7 @@ class DGClientTest {
         assertTrue(firstGroup.has("adcBuildNumber"));
         assertTrue(firstGroup.has("latestPlandatenId"));
 
-        assertTrue(firstGroup.get("id").isInt());
+        //assertTrue((firstGroup.get("id").isInt()));
         System.out.println(firstGroup);
 
 
